@@ -1,18 +1,8 @@
 package com.springuninter.model;
 
 import java.time.LocalDate;
-
+import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "clientes")
@@ -43,6 +33,8 @@ public class Cliente {
 	 private boolean ativo;
 	 
 	public Cliente() {
+
+		this.ativo = true;
 	}
 	 
 	

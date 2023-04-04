@@ -1,13 +1,14 @@
 package com.springuninter.bo;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.springuninter.dao.CRUD;
 import com.springuninter.dao.ClienteDao;
 import com.springuninter.model.Cliente;
 
+@Service
 public class ClienteBo implements CRUD<Cliente, Long>{
 	
 	@Autowired
@@ -35,15 +36,11 @@ public class ClienteBo implements CRUD<Cliente, Long>{
 	@Override
 	public void atualiza(Cliente cliente) {
 		
-		try{
+
+
 			clienteDao.pesquisapeloId(cliente.getId());
 			clienteDao.atualiza(cliente);
-		}catch(Exception ex){
-			
-		
-			System.out.println("erro: " + ex);
-		
-		}
+
 	    }
 
 	@Override
