@@ -11,17 +11,13 @@ public class Cliente {
 	 @Id
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 private Long id;
-	 
 	 @Column(nullable = false, length = 50)
 	 private String nome;
-	 
 	 @Column(length = 11)
 	 private String cpf;
-	 
 	 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	 @Column(name = "data_nascimento", columnDefinition = "DATE")
 	 private LocalDate dataNascimento;
-	 
 	 @Enumerated(EnumType.STRING)
 	 private Sexo sexo;
 	 @Column(length = 10)

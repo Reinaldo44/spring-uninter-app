@@ -3,7 +3,6 @@ package com.springuninter.bo;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.springuninter.dao.CRUD;
 import com.springuninter.dao.ClienteDao;
 import com.springuninter.model.Cliente;

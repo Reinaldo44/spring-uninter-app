@@ -25,7 +25,7 @@ public class ClienteDao implements CRUD<Cliente, Long>{
 	@Override
 	public List<Cliente> lista() {
 		
-		Query query = entityManager.createQuery("Select c form Cliente c");
+		Query query = entityManager.createQuery("Select c from Cliente c");
 		
 		return (List<Cliente>) query.getResultList();
 	}
