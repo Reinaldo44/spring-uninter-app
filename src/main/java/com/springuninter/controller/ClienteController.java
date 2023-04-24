@@ -1,12 +1,15 @@
 package com.springuninter.controller;
 
 import com.springuninter.bo.ClienteBo;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.springuninter.model.Cliente;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/clientes")
@@ -32,11 +35,16 @@ public class ClienteController {
 
 	}
 	@RequestMapping(method = RequestMethod.POST)
-	public String salvaCliente(@ModelAttribute Cliente cliente){
+	public String salvaCliente(@Valid @ModelAttribute Cliente cliente, BindingResult result, RedirectAttributes attr){
 
-          clienteBo.insere(cliente);
+		if (result.hasErrors())
+			return "cliente/formulario";
 
-		return "/cliente/formulario.html";
+		if (cliente.getId() == null) {
+			clienteBo.insere(cliente);
+			attr.addFlashAttribute("feedback", "Cliente foi cadastrado com sucesso");
+		}
+		return "redirect:/clientes";
 
 	}
 
