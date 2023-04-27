@@ -27,10 +27,11 @@ public class ClienteController {
 
 	}
 
-	@RequestMapping(value = "/edita/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/edita/{id}", method = RequestMethod.GET)
 	public ModelAndView edita(@PathVariable("id") Long id, ModelMap model) {
 
 		model.addAttribute("cliente", clienteBo.pesquisapeloId(id));
+
 		return new ModelAndView("/cliente/formulario", model);
 
 	}
@@ -43,6 +44,10 @@ public class ClienteController {
 		if (cliente.getId() == null) {
 			clienteBo.insere(cliente);
 			attr.addFlashAttribute("feedback", "Cliente foi cadastrado com sucesso");
+		}
+		else {
+			clienteBo.atualiza(cliente);
+			attr.addFlashAttribute("feedback", "Cliente foi atualizado com sucesso");
 		}
 		return "redirect:/clientes";
 
@@ -57,14 +62,14 @@ public class ClienteController {
 
 	}
 
-	@RequestMapping("/deletar")
+	@RequestMapping(value = "/deletar")
 	public String deletar(Long id) {
 
 		Cliente clienteId = clienteBo.pesquisapeloId(id);
 
 		clienteBo.remove(clienteId);
 
-		return "redirect:/cliente/lista";
+		return "redirect:/clientes";
 
 	}
     @RequestMapping(value = "/inativa/{id}", method = RequestMethod.GET)
