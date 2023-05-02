@@ -45,7 +45,7 @@ public class FornecedorController {
         return "redirect:/fornecedores";
     }
 
-    @RequestMapping(value = "", method=RequestMethod.GET)
+    @RequestMapping(method=RequestMethod.GET)
     public ModelAndView lista(ModelMap model) {
         model.addAttribute("fornecedores", fornecedorBo.lista());
         return new ModelAndView("/fornecedor/lista", model);

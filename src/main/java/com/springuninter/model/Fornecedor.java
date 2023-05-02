@@ -18,6 +18,10 @@ public class Fornecedor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 18)
+    @CNPJ(message = "CNPJ inválido")
+    private String cnpj;
+
     @Column(nullable = false, length = 50)
     @NotBlank(message = "informe o nome fantasia")
     @Size(min = 3, max = 50)
@@ -27,10 +31,6 @@ public class Fornecedor {
     @NotBlank(message = "informe a razão social")
     @Size(min = 3, max = 50)
     private String razaoSocial;
-
-    @Column(length = 18)
-    @CNPJ(message = "CNPJ inválido")
-    private String cnpj;
 
     @Column(length = 14)
     private String telefone;
@@ -112,5 +112,7 @@ public class Fornecedor {
         this.ativo = ativo;
     }
 }
+
+
 
 

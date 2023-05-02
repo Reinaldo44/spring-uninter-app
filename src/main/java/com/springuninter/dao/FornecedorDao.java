@@ -22,7 +22,7 @@ public class FornecedorDao implements CRUD<Fornecedor, Long> {
     @Override
     public List<Fornecedor> lista() {
 
-        Query query = entityManager.createQuery("Select c from Cliente c");
+        Query query = entityManager.createQuery("Select c from Fornecedor c");
 
         return (List<Fornecedor>) query.getResultList();
     }

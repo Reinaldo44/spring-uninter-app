@@ -4,8 +4,11 @@ import com.springuninter.dao.CRUD;
 import com.springuninter.dao.FornecedorDao;
 import com.springuninter.model.Fornecedor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class FornecedorBo implements CRUD<Fornecedor, Long> {
 @Autowired
 private FornecedorDao fornecedorDao;
@@ -20,6 +23,7 @@ public Fornecedor pesquisapeloId(Long id){
 public List<Fornecedor> lista(){
 
         return fornecedorDao.lista();
+
         }
 
 @Override
