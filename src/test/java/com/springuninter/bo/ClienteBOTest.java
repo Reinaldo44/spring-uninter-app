@@ -20,7 +20,7 @@ import com.springuninter.model.Sexo;
 public class ClienteBOTest {
    
 	@Autowired
-	private ClienteBo clienteBo;
+	private ClienteBO clienteBo;
 	
 	@Test
 	@Order(1)

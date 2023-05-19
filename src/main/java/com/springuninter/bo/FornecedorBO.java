@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class FornecedorBo implements CRUD<Fornecedor, Long> {
+public class FornecedorBO implements CRUD<Fornecedor, Long> {
 @Autowired
 private FornecedorDao fornecedorDao;
 

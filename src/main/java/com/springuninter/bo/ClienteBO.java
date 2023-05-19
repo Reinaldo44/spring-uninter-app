@@ -8,7 +8,7 @@ import com.springuninter.dao.ClienteDao;
 import com.springuninter.model.Cliente;
 
 @Service
-public class ClienteBo implements CRUD<Cliente, Long>{
+public class ClienteBO implements CRUD<Cliente, Long>{
 	
 	@Autowired
 	private ClienteDao clienteDao;

@@ -1,6 +1,6 @@
 package com.springuninter.controller;
 
-import com.springuninter.bo.FornecedorBo;
+import com.springuninter.bo.FornecedorBO;
 import com.springuninter.model.Fornecedor;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class FornecedorController {
 
     @Autowired
-    private FornecedorBo fornecedorBo;
+    private FornecedorBO fornecedorBo;
 
     @RequestMapping(value = "/novo", method = RequestMethod.GET)
     public ModelAndView novo(ModelMap model) {

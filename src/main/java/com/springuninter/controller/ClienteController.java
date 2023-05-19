@@ -1,6 +1,6 @@
 package com.springuninter.controller;
 
-import com.springuninter.bo.ClienteBo;
+import com.springuninter.bo.ClienteBO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ClienteController {
 
 	@Autowired
-	private ClienteBo clienteBo;
+	private ClienteBO clienteBo;
 
 
 	@RequestMapping(value = "/novo", method = RequestMethod.GET)
