@@ -24,7 +24,7 @@
         <div th:if="${!#strings.isEmpty(feedback)}" class="alert alert-success" role="alert">
             <span th:text="${feedback}"></span>
         </div>
-        <table class="table table-hover">
+        <table class="table table-hover" clss="list-group">
             <thead>
             <tr>
                 <td><b>FORNECEDOR</b></td>
@@ -35,8 +35,9 @@
             </tr>
             </thead>
             <tbody>
+
             <tr th:each="nota : ${notas}">
-                <td th:text="${nota.fornecedor.nomeFantasia}"></td>
+                <td><a class="list-group-item-action" th:href="@{/nota-entrada/edita/{id}(id=${nota.id})}"><span th:text="${nota.fornecedor.nomeFantasia}"></span></a></td>
                 <td th:text="${#temporals.format(nota.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
                 <td th:text="${#numbers.formatDecimal(nota.total, 0, 'POINT', 2, 'COMMA')}"></td>
                 <td>
@@ -45,7 +46,9 @@
                 <td>
                     <a class="btn btn-sm btn-secondary" th:href="@{/nota-entrada/remove/{id}(id=${nota.id})}">Remover</a>
                 </td>
+
             </tr>
+
             </tbody>
         </table>
     </div>
