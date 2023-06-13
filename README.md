@@ -8,7 +8,7 @@ Aplicação MVC desenvolvida com Spring e thymeleaf, onde tem como objetivo cont
 Uso de orientação a objetos e relacionamentos entre classes.
 Buscar e salvar dados em banco de dados usando Jpa com mysql.
 Uso de autenticação e login com Spring Security.
-Uso de arquitetura em cammadas MVC e Services.
+Uso de arquitetura em camadas MVC e Services.
 Uso de injeção de dependência com @Autoried.
 Uso do thymeleaf que é de facil utilização e se torna relativamente produtivo para aplicações pequenas.
 
