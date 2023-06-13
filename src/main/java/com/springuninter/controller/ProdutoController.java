@@ -33,19 +33,27 @@ public class ProdutoController {
 
     @RequestMapping(value = "", method=RequestMethod.POST)
     public String salva(@Valid @ModelAttribute Produto produto, BindingResult result, RedirectAttributes attr, ModelMap model) {
+
         if (result.hasErrors()) {
+
             model.addAttribute("categorias", Arrays.asList(Categoria.values()));
             return "produto/formulario";
+
         }
 
         if (produto.getId() == null) {
+
             produtoBO.insere(produto);
             attr.addFlashAttribute("feedback", "O produto foi cadastrado com sucesso");
+
         }
         else {
+
             produtoBO.atualiza(produto);
             attr.addFlashAttribute("feedback", "O produto foi atualizado com sucesso");
+
         }
+
         return "redirect:/produtos";
     }
 
@@ -57,6 +65,7 @@ public class ProdutoController {
 
     @RequestMapping(value = "/edita/{id}", method = RequestMethod.GET)
     public ModelAndView edita(@PathVariable("id") Long id, ModelMap model) {
+
         try {
             model.addAttribute("produto", produtoBO.pesquisapeloId(id));
             model.addAttribute("categorias", Arrays.asList(Categoria.values()));

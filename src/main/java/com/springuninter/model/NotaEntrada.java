@@ -1,6 +1,8 @@
 package com.springuninter.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -11,12 +13,18 @@ public class NotaEntrada {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @DateTimeFormat(iso = ISO.DATE_TIME)
     @Column(nullable=false, name="data_hora", columnDefinition = "DATETIME")
     private LocalDateTime dataHora;
+
     @ManyToOne
     @JoinColumn(name="fornecedor_id", nullable=false)
     private Fornecedor fornecedor;
+
+    @OneToMany(mappedBy="notaEntrada", cascade = CascadeType.ALL)
+    private List<NotaEntradaItem> itens;
+
     @Transient
     private Float total;
 
@@ -45,11 +53,24 @@ public class NotaEntrada {
     }
 
     public Float getTotal() {
+        this.total = 0f;
+        if (this.itens != null) {
+            for (NotaEntradaItem notaEntradaItem : itens) {
+                total += notaEntradaItem.getValorTotal();
+            }
+        }
         return total;
     }
-
     public void setTotal(Float total) {
         this.total = total;
+    }
+
+    public List<NotaEntradaItem> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<NotaEntradaItem> itens) {
+        this.itens = itens;
     }
 }
 

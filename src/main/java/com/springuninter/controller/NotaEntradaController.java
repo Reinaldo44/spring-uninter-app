@@ -17,23 +17,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
 @Controller
 @RequestMapping("/nota-entrada")
 public class NotaEntradaController {
 
-  @Autowired
+    @Autowired
     private NotaEntradaBO notaEntradaBO;
 
-       @Autowired
-       private ProdutoBO produtoBO;
-    /*
-       @Autowired
-       private NotaEntradaItem nei;
-   */
-     @Autowired
-     private FornecedorBO fornecedorBO;
+    @Autowired
+    private FornecedorBO fornecedorBO;
 
+    @Autowired
+    private ProdutoBO produtoBO;
 
     @RequestMapping(value="/novo", method=RequestMethod.GET)
     public ModelAndView novo(ModelMap model) {
@@ -42,12 +37,17 @@ public class NotaEntradaController {
         return new ModelAndView("/nota-entrada/formulario", model);
     }
 
-   @RequestMapping(value="", method=RequestMethod.POST)
+    @RequestMapping(value="", method=RequestMethod.POST)
     public String salva(@Valid @ModelAttribute NotaEntrada notaEntrada,
                         BindingResult result,
-                        RedirectAttributes attr) {
+                        RedirectAttributes attr,
+                        ModelMap model) {
+
+        if (notaEntrada.getFornecedor().getId() == null)
+            result.rejectValue("fornecedor", "field.required");
 
         if (result.hasErrors()) {
+            model.addAttribute("fornecedores", fornecedorBO.lista());
             return "/nota-entrada/formulario";
         }
 
@@ -68,7 +68,8 @@ public class NotaEntradaController {
         return new ModelAndView("/nota-entrada/lista", model);
     }
 
-  @RequestMapping(value="/{id}/item", method=RequestMethod.GET)
+
+    @RequestMapping(value="/{id}/item", method=RequestMethod.GET)
     public ModelAndView produto(@PathVariable("id") Long id, ModelMap model) {
         NotaEntradaItem nei = new NotaEntradaItem();
         NotaEntrada ne = notaEntradaBO.pesquisapeloId(id);
@@ -77,21 +78,22 @@ public class NotaEntradaController {
         model.addAttribute("produtos", produtoBO.lista());
         return new ModelAndView("/nota-entrada-item/formulario", model);
     }
-/*
+
     @RequestMapping(value="/edita/{id}", method=RequestMethod.GET)
     public ModelAndView edita(@PathVariable("id") Long id, ModelMap model) {
         model.addAttribute("notaEntradaItem", new NotaEntradaItem());
-        model.addAttribute("fornecedores", fornecedorBO.listaTodos());
-        model.addAttribute("notaEntrada", notaEntradaBO.pesquisaPeloId(id));
+        model.addAttribute("fornecedores", fornecedorBO.lista());
+        model.addAttribute("notaEntrada", notaEntradaBO.pesquisapeloId(id));
         return new ModelAndView("/nota-entrada/formulario", model);
     }
 
     @RequestMapping(value="/remove/{id}", method=RequestMethod.GET)
     public String remove(@PathVariable("id") Long id, RedirectAttributes attr) {
-        NotaEntrada ne = notaEntradaBO.pesquisaPeloId(id);
+        NotaEntrada ne = notaEntradaBO.pesquisapeloId(id);
         notaEntradaBO.remove(ne);
         attr.addFlashAttribute("feedback", "Nota entrada removida com sucesso");
         return "redirect:/nota-entrada";
-    }*/
+    }
 }
+
 

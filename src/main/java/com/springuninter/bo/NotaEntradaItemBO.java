@@ -1,17 +1,14 @@
 package com.springuninter.bo;
 
-
 import java.util.List;
-
 import com.springuninter.dao.CRUD;
 import com.springuninter.dao.NotaEntradaItemDao;
 import com.springuninter.model.NotaEntradaItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
-public class NotaEntradaItemBO implements CRUD<NotaEntradaItem, Long> {
+public class NotaEntradaItemBO implements CRUD<NotaEntradaItem, Long>{
 
     @Autowired
     private NotaEntradaItemDao dao;
@@ -40,7 +37,7 @@ public class NotaEntradaItemBO implements CRUD<NotaEntradaItem, Long> {
     public void remove(NotaEntradaItem notaEntradaItem) {
         dao.remove(notaEntradaItem);
     }
-/*
+
     public boolean itemJaAdicionado(NotaEntradaItem notaEntradaItem) {
         Long notaEntradaId = notaEntradaItem.getNotaEntrada().getId();
         List<NotaEntradaItem> itens = dao.listaItensNota(notaEntradaId);
@@ -56,15 +53,13 @@ public class NotaEntradaItemBO implements CRUD<NotaEntradaItem, Long> {
         } else {
             Long notaEntradaItemId = notaEntradaItem.getId();
             for (NotaEntradaItem item : itens) {
-                if (item.getProduto().getId() == produtoId && notaEntradaItemId == item.getId()) {
+                if (item.getProduto().getId() == produtoId && notaEntradaItemId != item.getId()) {
                     return true;
                 }
             }
         }
         return false;
     }
-
- */
 
 }
 
